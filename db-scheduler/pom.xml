@@ -207,7 +207,7 @@
         <profile>
             <id>compatibility</id>
             <properties>
-                <test.excludedTags/>
+                <test.excludedTags />
             </properties>
         </profile>
     </profiles>
