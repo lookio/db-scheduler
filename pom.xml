@@ -40,7 +40,16 @@
 
 		<!-- Dependency versions -->
 		<spring-boot.version>2.3.4.RELEASE</spring-boot.version>
+		<git.url>https://github.com/lookio/db-scheduler.git</git.url>
+		<project.scm.id>github</project.scm.id>
 	</properties>
+
+	<scm>
+		<connection>scm:git:${git.url}</connection>
+		<developerConnection>scm:git:${git.url}</developerConnection>
+		<url>${git.url}</url>
+		<tag>db-scheduler-${version}</tag>
+	</scm>
 
 	<modules>
 		<module>db-scheduler</module>
@@ -313,21 +322,12 @@
 		</profile>
 	</profiles>
 
-	<scm>
-		<connection>scm:git:git@github.com:kagkarlsson/db-scheduler.git</connection>
-		<developerConnection>scm:git:git@github.com:kagkarlsson/db-scheduler.git</developerConnection>
-		<url>https://github.com/kagkarlsson/db-scheduler/</url>
-		<tag>HEAD</tag>
-	</scm>
 
 	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
 		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+			<id>github</id>
+			<name>GitHub lookio Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/lookio/db-scheduler</url>
 		</repository>
 	</distributionManagement>
 

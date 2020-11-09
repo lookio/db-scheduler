@@ -1,29 +1,31 @@
-name: build
-on: [push, pull_request]
+name: CI
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+    branches:
+      - master
+
 jobs:
-  build:
+  build-java:
+
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        java: [ '8', '11' ]
-    name: AdoptOpenJDK ${{ matrix.java }}
+
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - name: Set up JDK 1.11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.11
+      - name: Build with Maven
+        run: |
+          mkdir -p ~/.m2
+          echo "<settings><servers><server><id>github</id><username>USER</username><password>${GITHUB_TOKEN}</password></server></servers></settings>" > ~/.m2/settings.xml
+          git config --global user.email "grigoryr@liveperson.com"
+          git config --global user.name "grigoryr"
+          mvn -B clean release:clean release:prepare release:perform -Dbuildtype=release
+        env:
+          CI: true
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Set up Java ${{ matrix.java }}
-      uses: joschi/setup-jdk@v2
-      with:
-        java-version: ${{ matrix.java }}
-
-    - name: Configure Maven cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
-
-    - name: Run all tests
-      run: mvn -Pcompatibility clean test --file pom.xml
-      env:
-        TZ: UTC
