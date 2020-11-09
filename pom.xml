@@ -4,7 +4,7 @@
 
 	<groupId>com.github.kagkarlsson</groupId>
 	<artifactId>db-scheduler-parent</artifactId>
-	<version>1.0.0.0-SNAPSHOT</version>
+	<version>1.0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
 	<name>db-scheduler: Parent</name>
@@ -48,7 +48,7 @@
 		<connection>scm:git:${git.url}</connection>
 		<developerConnection>scm:git:${git.url}</developerConnection>
 		<url>${git.url}</url>
-		<tag>db-scheduler-1.0.0.0-SNAPSHOT</tag>
+		<tag>db-scheduler-1.0.0.1-SNAPSHOT</tag>
 	</scm>
 
 	<modules>
