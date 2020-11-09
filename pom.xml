@@ -48,7 +48,7 @@
 		<connection>scm:git:${git.url}</connection>
 		<developerConnection>scm:git:${git.url}</developerConnection>
 		<url>${git.url}</url>
-		<tag>db-scheduler-${version}</tag>
+<!--		<tag>db-scheduler-${version}</tag>-->
 	</scm>
 
 	<modules>
